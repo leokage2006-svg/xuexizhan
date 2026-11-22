@@ -3,8 +3,8 @@ window.XXZ_CONFIG = {
   SUPABASE_URL: 'https://ezmfzklwxplqtuqcryml.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_ASNuZSEwNK25VtwDGCb5aQ_wJjWHJeT',
 
-  // Để trống: danh sách Gmail được quản lý trong Supabase (bảng allowed_emails)
+  // Để trống = ai có tài khoản Google đều đăng nhập được (mỗi người một tiến độ riêng)
   ALLOWED_EMAILS: [],
 
-  GOOGLE_LOGIN: false,
+  GOOGLE_LOGIN: true,
 };

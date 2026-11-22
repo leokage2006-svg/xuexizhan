@@ -19,14 +19,8 @@ export function settings(view) {
       ${sync.enabled ? `
         <p class="soft" style="margin:0">Trạng thái: <b>${esc(sync.status.text)}</b>${user ? ` · ${esc(user.email)}` : ''}</p>
         ${user ? `<div class="btns"><button class="btn" id="sync-now">Đồng bộ ngay</button><button class="btn" id="logout">Đăng xuất</button></div>
-          <p class="muted" style="margin:0;font-size:13px">Muốn dùng Gmail khác? Đăng xuất rồi đăng nhập bằng Gmail đó. Mỗi Gmail có tiến độ riêng.</p>
-          ${list.filter((p) => p.id.startsWith('local-') && store.peek(p.id)).map((p) => `<div class="btns"><span class="soft" style="font-size:14px">Tiến độ cũ trên máy này: <b>${esc(store.peek(p.id)?.profile?.name || p.name)}</b> (${Object.keys(store.peek(p.id)?.cards || {}).length} từ)</span><button class="btn sm" data-merge="${p.id}">Gộp vào tài khoản này</button></div>`).join('')}` : `
-        <form id="login" class="form-grid">
-          <label class="f">Gmail của bạn<input type="email" id="email" required placeholder="ban@gmail.com"></label>
-          <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap"><button class="btn pri" type="submit">Gửi link đăng nhập</button>
-          ${(window.XXZ_CONFIG || {}).GOOGLE_LOGIN ? '<button class="btn" type="button" id="google">Đăng nhập bằng Google</button>' : ''}</div>
-        </form>
-        <p class="muted" style="margin:0;font-size:13px">Web gửi một đường link vào Gmail. Bấm link đó là đăng nhập xong, không cần mật khẩu.</p>`}` : `
+          <p class="muted" style="margin:0;font-size:13px">Muốn dùng Gmail khác? Bấm Đăng xuất rồi đăng nhập lại bằng Gmail đó. Mỗi Gmail có tiến độ riêng.</p>
+          ${list.filter((p) => p.id.startsWith('local-') && store.peek(p.id)).map((p) => `<div class="btns"><span class="soft" style="font-size:14px">Tiến độ cũ trên máy này: <b>${esc(store.peek(p.id)?.profile?.name || p.name)}</b> (${Object.keys(store.peek(p.id)?.cards || {}).length} từ)</span><button class="btn sm" data-merge="${p.id}">Gộp vào tài khoản này</button></div>`).join('')}` : ''}` : `
         <p class="soft" style="margin:0">Đang lưu trên trình duyệt này. Muốn đồng bộ giữa máy tính và điện thoại, làm theo mục <b>Bật đồng bộ</b> trong README (khoảng 10 phút, miễn phí).</p>
         <div class="stack" style="gap:8px">${list.map((p, n) => `<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)">
           <div class="avatar">${esc((p.name || '?')[0].toUpperCase())}</div><b style="flex:1">${esc(p.id === store.id() ? st.profile.name : p.name)} ${p.id === store.id() ? '<span class="chip acc">đang dùng</span>' : ''}</b>

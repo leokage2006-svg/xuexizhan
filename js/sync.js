@@ -8,7 +8,7 @@ let sb = null;
 let user = null;
 let pushTimer = null;
 const subs = new Set();
-export const status = { text: enabled ? 'Chưa đăng nhập' : 'Đang lưu trên máy này', ok: false, last: 0 };
+export const status = { text: enabled ? 'Chưa đăng nhập' : 'Đang lưu trên máy này', ok: false, last: 0, checked: !enabled };
 
 function emit() { subs.forEach((f) => f(status, user)); }
 export function onStatus(f) { subs.add(f); return () => subs.delete(f); }
@@ -32,9 +32,10 @@ export async function init(onUser) {
     const c = await client();
     const { data } = await c.auth.getSession();
     await handleSession(data.session, onUser);
+    status.checked = true; emit();
     c.auth.onAuthStateChange((_e, session) => handleSession(session, onUser));
   } catch (e) {
-    status.text = 'Không kết nối được máy chủ đồng bộ'; emit();
+    status.text = 'Không kết nối được máy chủ đồng bộ'; status.checked = true; status.failed = true; emit();
   }
 }
 
@@ -49,9 +50,11 @@ async function handleSession(session, onUser) {
     return;
   }
   const pid = `sb-${u.id}`;
-  store.addProfile(u.email.split('@')[0], pid);
+  store.addProfile(u.user_metadata?.full_name || u.email.split('@')[0], pid);
   store.switchTo(pid);
   if (!store.get().profile.email) { store.get().profile.email = u.email; }
+  const gname = u.user_metadata?.full_name || u.user_metadata?.name;
+  if (gname && (!store.get().profile.name || store.get().profile.name === 'Bạn' || store.get().profile.name === u.email.split('@')[0])) store.get().profile.name = gname;
   await pull();
   store.hooks.afterSave = () => schedulePush();
   if (onUser) onUser(u);

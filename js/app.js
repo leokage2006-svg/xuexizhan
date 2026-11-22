@@ -11,6 +11,7 @@ import { gamesHub, game } from './views/games.js';
 import { diary } from './views/diary.js';
 import { goals } from './views/goals.js';
 import { settings } from './views/settings.js';
+import { login } from './views/login.js';
 
 const view = $('#view');
 let cleanup = null;
@@ -40,6 +41,13 @@ export function render() {
   if (typeof cleanup === 'function') { try { cleanup(); } catch {} }
   cleanup = null;
   const path = decodeURIComponent(location.hash.replace(/^#/, '') || '/');
+  if (sync.enabled && !sync.currentUser() && !sync.status.failed) {
+    document.body.classList.add('locked');
+    view.innerHTML = '';
+    login(view, sync.status.checked);
+    return;
+  }
+  document.body.classList.remove('locked');
   if (!store.get().settings.onboarded && path !== '/settings') {
     cleanup = onboarding(view, () => { location.hash = '#/'; render(); });
     setNav('home');
@@ -157,7 +165,7 @@ async function start() {
   window.addEventListener('hashchange', render);
   render();
   if (sync.enabled) {
-    sync.onStatus(() => updateChrome());
+    sync.onStatus(() => { updateChrome(); if (!sync.currentUser()) render(); });
     sync.init(() => { applyTheme(); render(); toast('Đã đăng nhập và đồng bộ tiến độ'); });
   }
 }
