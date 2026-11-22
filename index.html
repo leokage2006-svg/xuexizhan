@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>学习站 · Học tập trạm</title>
+<meta name="description" content="Trang web cá nhân học tiếng Trung HSK 3.0 qua bộ thủ, âm Hán Việt và ôn tập ngắt quãng.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D0E11'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='%23E4DFD3' font-family='serif'%3E学%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  // Áp chế độ sáng/tối ngay khi tải để tránh nháy màn hình
+  (function () {
+    try {
+      var id = localStorage.getItem('xxz.active');
+      var st = id ? JSON.parse(localStorage.getItem('xxz.state.' + id) || '{}') : {};
+      var mode = (st.settings && st.settings.theme) || 'auto';
+      var h = new Date().getHours();
+      var light = mode === 'light' || (mode === 'auto' && h >= 6 && h < 18);
+      document.documentElement.dataset.theme = light ? 'light' : 'dark';
+    } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+  })();
+</script>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Điều hướng chính">
+    <a class="brand" href="#/">
+      <span class="zhs brand-zh">学习站</span>
+      <span class="brand-vi">Học tập trạm</span>
+    </a>
+    <div class="side-line"></div>
+    <div class="nav" id="nav">
+      <a href="#/" data-nav="home"><span class="zhs">总览</span><span>Tổng quan</span></a>
+      <a href="#/learn" data-nav="learn"><span class="zhs">新词</span><span>Học từ mới</span></a>
+      <a href="#/review" data-nav="review"><span class="zhs">复习</span><span>Ôn tập</span><b class="badge" id="due-badge" hidden></b></a>
+      <a href="#/words" data-nav="words"><span class="zhs">词汇</span><span>Từ vựng</span></a>
+      <a href="#/chars" data-nav="chars"><span class="zhs">汉字</span><span>Chữ Hán · bộ thủ</span></a>
+      <a href="#/grammar" data-nav="grammar"><span class="zhs">语法</span><span>Ngữ pháp</span></a>
+      <a href="#/games" data-nav="games"><span class="zhs">游戏</span><span>Trò chơi</span></a>
+      <a href="#/diary" data-nav="diary"><span class="zhs">日记</span><span>Nhật ký</span></a>
+      <a href="#/goals" data-nav="goals"><span class="zhs">目标</span><span>Mục tiêu</span></a>
+      <a href="#/settings" data-nav="settings"><span class="zhs">设置</span><span>Cài đặt</span></a>
+    </div>
+    <div class="me" id="me"></div>
+  </nav>
+  <main class="main">
+    <div class="topbar">
+      <form class="search" id="search-form" role="search">
+        <label for="search" class="sr">Tra từ</label>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="Tra chữ Hán, pinyin, Hán Việt hoặc nghĩa…" autocomplete="off">
+      </form>
+      <button class="icon-btn" id="theme-btn" aria-label="Đổi sáng / tối" title="Đổi sáng / tối">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </div>
+    <div id="view" class="view" tabindex="-1"></div>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<div id="overlay" class="overlay" hidden></div>
+<script src="vendor/hanzi-writer.min.js"></script>
+<script src="config.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
