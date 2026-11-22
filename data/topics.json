@@ -1,0 +1,116 @@
+[
+ {
+  "code": "T",
+  "zh": "时间数字",
+  "vi": "Thời gian & số đếm",
+  "count": 105
+ },
+ {
+  "code": "N",
+  "zh": "人物家庭",
+  "vi": "Con người & gia đình",
+  "count": 82
+ },
+ {
+  "code": "B",
+  "zh": "身体健康",
+  "vi": "Cơ thể & sức khỏe",
+  "count": 52
+ },
+ {
+  "code": "F",
+  "zh": "饮食",
+  "vi": "Ăn uống",
+  "count": 88
+ },
+ {
+  "code": "S",
+  "zh": "购物",
+  "vi": "Mua sắm, quần áo & tiền",
+  "count": 66
+ },
+ {
+  "code": "H",
+  "zh": "家居生活",
+  "vi": "Nhà cửa & sinh hoạt",
+  "count": 68
+ },
+ {
+  "code": "G",
+  "zh": "交通出行",
+  "vi": "Giao thông & đi lại",
+  "count": 62
+ },
+ {
+  "code": "P",
+  "zh": "方位地点",
+  "vi": "Phương hướng & địa điểm",
+  "count": 81
+ },
+ {
+  "code": "E",
+  "zh": "学习",
+  "vi": "Trường học & học tập",
+  "count": 139
+ },
+ {
+  "code": "W",
+  "zh": "工作",
+  "vi": "Công việc & kinh tế",
+  "count": 66
+ },
+ {
+  "code": "Z",
+  "zh": "自然天气",
+  "vi": "Thời tiết & thiên nhiên",
+  "count": 59
+ },
+ {
+  "code": "R",
+  "zh": "爱好娱乐",
+  "vi": "Sở thích, thể thao & du lịch",
+  "count": 118
+ },
+ {
+  "code": "M",
+  "zh": "情感性格",
+  "vi": "Cảm xúc & tính cách",
+  "count": 98
+ },
+ {
+  "code": "X",
+  "zh": "社交",
+  "vi": "Giao tiếp & xã hội",
+  "count": 94
+ },
+ {
+  "code": "C",
+  "zh": "科技媒体",
+  "vi": "Truyền thông & công nghệ",
+  "count": 45
+ },
+ {
+  "code": "A",
+  "zh": "动作",
+  "vi": "Hành động thường ngày",
+  "count": 269
+ },
+ {
+  "code": "D",
+  "zh": "描述",
+  "vi": "Tính chất & mô tả",
+  "count": 56
+ },
+ {
+  "code": "K",
+  "zh": "抽象",
+  "vi": "Khái niệm chung",
+  "count": 73
+ },
+ {
+  "code": "Q",
+  "zh": "虚词",
+  "vi": "Từ chức năng (đại từ, phó từ, lượng từ...)",
+  "count": 329
+ }
+]
